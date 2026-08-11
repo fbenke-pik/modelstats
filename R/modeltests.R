@@ -345,7 +345,7 @@ evaluateRuns <- function(model, # nolint: cyclocomp_linter.
                            " --error=", fullPathToThisRun, "/", outFileName, ".out",
                            " --mail-type=END --time=200 --mem-per-cpu=8000",
                            " --wrap=\"Rscript scripts/cs2/run_compareScenarios2.R",
-                           " outputDirs=", paste(c(fullPathToThisRun, fullPathToLastRun), collapse = ","),
+                           " outputdirs=", paste(c(fullPathToThisRun, fullPathToLastRun), collapse = ","),
                            " profileName=default",
                            " outFileName=", outFileName,
                            "; ", "mv ", outFileName, ".pdf ", fullPathToThisRun,
