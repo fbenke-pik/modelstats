@@ -13,7 +13,7 @@
 #' a <- getRunStatus(dir())
 #' }
 #'
-#' @importFrom gdx readGDX
+#' @importFrom gdx2 readGDX
 #' @importFrom utils head tail
 #' @importFrom gms loadConfig
 #' @importFrom piamutils niceround
@@ -143,8 +143,8 @@ getRunStatus <- function(mydir = dir(), sort = "nf", user = NULL) {
         cm_iteration_max <- sub(";[ ]*", "", sub("^.*.= ", "", cm_iteration_max))
       }
     }
-    
-    
+
+
     # RunStatus
     out[i, "Iter"] <- "NA"
     out[i, "RunStatus"] <- "NA"
@@ -240,7 +240,7 @@ getRunStatus <- function(mydir = dir(), sort = "nf", user = NULL) {
     } else {
       out[i, "RunStatus"] <- "full.log missing"
     }
-    
+
     # Warnings
     # For MAgPIE, checks slurm.log for "Warning messages:" followed by a list of warnings in the following format:
     # 1: warning message, followed by up to 1 additional line of explanation.

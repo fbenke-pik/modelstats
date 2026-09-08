@@ -10,24 +10,34 @@ export(modeltests)
 export(printOutput)
 export(promptAndRun)
 import(crayon)
-importFrom(cli,cli_alert_info)
-importFrom(cli,cli_alert_warning)
-importFrom(dplyr,"%>%")
-importFrom(dplyr,filter)
-importFrom(dplyr,mutate)
-importFrom(dplyr,pull)
-importFrom(gdx,readGDX)
+importFrom(cli,
+  cli_alert_info,
+  cli_alert_warning
+)
+importFrom(dplyr,
+  "%>%",
+  filter,
+  mutate,
+  pull
+)
+importFrom(gdx2,readGDX)
 importFrom(gms,loadConfig)
-importFrom(gtools,mixedorder)
-importFrom(gtools,mixedsort)
+importFrom(gtools,
+  mixedorder,
+  mixedsort
+)
 importFrom(lubridate,make_difftime)
 importFrom(lucode2,sendmail)
-importFrom(optparse,OptionParser)
-importFrom(optparse,make_option)
-importFrom(optparse,parse_args)
+importFrom(optparse,
+  OptionParser,
+  make_option,
+  parse_args
+)
 importFrom(piamutils,niceround)
 importFrom(rlang,.data)
 importFrom(stringi,stri_order)
-importFrom(utils,head)
-importFrom(utils,read.csv2)
-importFrom(utils,tail)
+importFrom(utils,
+  head,
+  read.csv2,
+  tail
+)
