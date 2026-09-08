@@ -6,7 +6,6 @@
 #' @param user the user whose runs will be sought for
 #'
 #' @author Anastasis Giannousakis, Oliver Richters
-#' @importFrom gdx readGDX
 #' @export
 foundInSlurm <- function(mydir = ".", user = NULL) {
 

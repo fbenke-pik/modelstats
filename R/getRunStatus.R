@@ -13,7 +13,7 @@
 #' a <- getRunStatus(dir())
 #' }
 #'
-#' @importFrom gdx readGDX
+#' @importFrom gdx2 readGDX
 #' @importFrom utils head tail
 #' @importFrom gms loadConfig
 #' @importFrom piamutils niceround
@@ -51,6 +51,7 @@ getRunStatus <- function(mydir = dir(), sort = "nf", user = NULL) {
     # select latest gdx file based on iteration, or if that fails based on timestamp
     gdxfiles <- c(gdx, gdx_non_optimal)[file.exists(c(gdx, gdx_non_optimal))]
     latest_gdx <- head(gdxfiles, 1)
+
     if (length(gdxfiles) > 1) {
       itergdx <- as.numeric(unlist(lapply(gdxfiles, readGDX, "o_iterationNumber", format = "simplest", react = "silent")))
       if (length(itergdx) == length(gdxfiles)) {
@@ -143,8 +144,8 @@ getRunStatus <- function(mydir = dir(), sort = "nf", user = NULL) {
         cm_iteration_max <- sub(";[ ]*", "", sub("^.*.= ", "", cm_iteration_max))
       }
     }
-    
-    
+
+
     # RunStatus
     out[i, "Iter"] <- "NA"
     out[i, "RunStatus"] <- "NA"
@@ -240,7 +241,7 @@ getRunStatus <- function(mydir = dir(), sort = "nf", user = NULL) {
     } else {
       out[i, "RunStatus"] <- "full.log missing"
     }
-    
+
     # Warnings
     # For MAgPIE, checks slurm.log for "Warning messages:" followed by a list of warnings in the following format:
     # 1: warning message, followed by up to 1 additional line of explanation.
@@ -271,7 +272,7 @@ getRunStatus <- function(mydir = dir(), sort = "nf", user = NULL) {
     out[i, "Conv"] <- "NA"
     if (exists("cfg") && isTRUE(grepl("nash", out[i, "RunType"])) && length(latest_gdx) > 0) {
       iter_no  <- try(as.numeric(readGDX(gdx = latest_gdx, "o_iterationNumber", format = "simplest")), silent = TRUE)
-      s80_bool <- try(as.numeric(readGDX(gdx = latest_gdx, "s80_bool", types = "parameters", format = "simplest")), silent = TRUE)
+      s80_bool <- try(as.numeric(readGDX(gdx = latest_gdx, "s80_bool", format = "simplest")), silent = TRUE)
       if (! inherits(s80_bool, "try-error") && ! inherits(iter_no, "try-error")) {
         if (s80_bool == 1) {
           out[i, "Conv"] <- if (file.exists(gdx_non_optimal)) "converged (had INFES)" else "converged"
